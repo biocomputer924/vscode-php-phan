@@ -1,0 +1,102 @@
+{
+	"name": "vscode-php-phan",
+	"description": "PHP for Visual Studio Code (powered by Phan).",
+	"version": "1.1.0",
+	"engines": {
+		"vscode": "^1.50.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/likebot0/vscode-php-phan.git"
+	},
+	"displayName": "PHP (Phan)",
+	"publisher": "likebot",
+	"categories": [
+		"Programming Languages",
+		"Linters"
+	],
+	"keywords": [
+		"php",
+		"phan"
+	],
+	"activationEvents": [
+		"onLanguage:php",
+		"workspaceContains:**/*.php"
+	],
+	"main": "./out/extension",
+	"scripts": {
+		"build": "tsc -p .",
+		"watch": "tsc -w -p ."
+	},
+	"devDependencies": {
+		"@types/node": "^14.14.41",
+		"@types/semver": "^7.3.5",
+		"@types/vscode": "^1.50.0",
+		"typescript": "^4.2.4",
+		"vsce": "^1.88.0",
+		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"semver": "^7.3.5",
+		"vscode-languageclient": "^7.0.0"
+	},
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "PHP (Phan)",
+			"properties": {
+				"php-phan.phpExecutablePath": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": null,
+					"markdownDescription": "Optional, defaults to searching for \"php\". The path to a PHP 7.2+ executable to use to execute the Phan server. The PHP 7.2+ installation should preferably include and enable the PHP modules `pcntl`, as well as the third party `ast` (php-ast) module from https://pecl.php.net/ast\nFor the best analysis results, install and enable the same PECL extensions that are used by the project being analyzed. (Modifying requires restart)"
+				},
+				"php-phan.phanScriptPath": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": null,
+					"markdownDescription": "Optional. If provided, this overrides the Phan script to use, e.g. `/path/to/phan_git_checkout/phan`. (Modifying requires restart)"
+				},
+				"php-phan.phanArgs": {
+					"type": "array",
+					"default": [],
+					"markdownDescription": "Optional. Setting this will provide these additional CLI flags to the Phan server. See https://github.com/phan/phan#usage (e.g. `[\"--quick\"]`) (Modifying requires restart)"
+				},
+				"php-phan.enableCompletion": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "If enabled, Phan supports \"Completion\" requests."
+				},
+				"php-phan.enableDebugLog": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Enable this to print messages to the debug console when developing or debugging this VS Code extension. (Modifying requires restart)"
+				},
+				"php-phan.enableGoToDefinition": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "If enabled, Phan supports \"Go To Definition\" requests."
+				},
+				"php-phan.enableHover": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "If enabled, Phan supports \"Hover\" requests."
+				},
+				"php-phan.redundantConditionDetection": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Enables redundant and impossible condition detection."
+				},
+				"php-phan.unusedVariableDetection": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Enables unused variable and parameter detection."
+				}
+			}
+		}
+	}
+}
